@@ -24,3 +24,12 @@ select *from author where id >10 and name = 'abc'
 select name, email from author;
 
 where id !=1
+
+ - select 찾고싶은 칼럼이름 from 테이블이름[where 조건]
+* = 모든 칼럼 의미함
+모든필드 선택
+ - select *from author;
+
+order by 필드이름 asc(오른차순, 디폴트)
+
+insert into author (id, name, adress) values(6,'hihi', 25)
