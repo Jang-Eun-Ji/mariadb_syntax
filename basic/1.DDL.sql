@@ -59,13 +59,53 @@ ALTER TABLE posts RENAME post;
 ALTER TABLE author ADD COLUMN role VARCHAR(50);
 
 --필드타입변경// 덮어쓰기(modify) - 원래 있던 제약조건도 무조건 써야함
-ALTER TABLE author modify COLUMN name VARCHAR(100) NOT NULL;
+ALTER TABLE author modify COLUMN name(칼럼이름) VARCHAR(100) NOT NULL;
 
--- 컬러 이름 변경
+-- 컬러 이름 변경// 타입이랑 제약조건 있으면 넣어
 ALTER TABLE 테이블명 CHANGE COLUMN (기존컬럼명 새로운 컬럼명 타임[제약조건];)
-ALTER TABLE post CHANGE COLUMN content contents varchar(100) NOT null ;
+ALTER TABLE post CHANGE COLUMN content contents VARCHAR(255);
 
 -- 컬럼 삭제
 ALTER TABLE 테이블명 DROP COLUMN 컬럼명;
 ALTER TABLE post DROP COLUMN test1;
+
+-- 데이터베이스 삭제
+DROP DATABASE 데이터베이스명;
+-- 테이블 삭제
+DROP TABLE 테이블명;
+
+-- 테이블의 데이터만을 지우고 싶을 때
+DELETE FROM 테이블이름
+TRUNCATE TABLE 테이블이름
+
+-- IF EXISTS
+특정 객체(예: 데이터베이스나 테이블)가 존재하는 경우에만 명령어를 실행/
+스크립트 한번에 할때 에러 안나게 하려고 하는것
+DROP DATABASE 또는 TABLE IF EXISTS
+
+
+author
+'CREATE TABLE `author` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `test1` varchar(255) DEFAULT NULL,
+  `role` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci'
+
+post
+'CREATE TABLE `post` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `contents` varchar(3000) DEFAULT NULL,
+  `author_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `author_id` (`author_id`),
+  CONSTRAINT `post_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `author` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci'
+
+
+ALTER TABLE post CHANGE COLUMN contents contents VARCHAR(3000);
 
