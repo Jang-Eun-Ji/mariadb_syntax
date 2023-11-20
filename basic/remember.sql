@@ -115,3 +115,5 @@ CATEGORY = '인문' (PUBLISHED_DATE between '2021%-%01-01'and '2021%-%12-31') or
 ALTER table post drop unique 제약조건이름;
 
 alter table author
+-- auto_increment
+ALTER TABLE post MODIFY COLUMN id INT AUTO_INCREMENT;
