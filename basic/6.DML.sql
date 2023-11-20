@@ -42,3 +42,4 @@ case STATUS
 as STATUS from USED_GOODS_BOARD 
 where CREATED_DATE	='2022-10-05'
 order by BOARD_ID desc
+
