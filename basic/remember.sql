@@ -6,11 +6,15 @@ SHOW TABLES;
 DESCRIBE author;
 
 -- 테이블 제약조건 조회
-SELECT * FROM INFOMATION_SCHEMA.KEY_COLUMN_USAGE
-WHERE TABLE_NAME = 'posts';
+select * from information_schema.KEY_COLUMN_USAGE
+where table_name = 'author';
+
 -- 테이블 인덱스 조회 
 SHOW INDEX FROM posts; 
-
+--테이블 조회
+select *from author
+-- 이름만 조회
+select name *from author;
 
 CREAT!!!
 -- PI테이블 생성법 , author테이블 신규 생성
@@ -63,24 +67,17 @@ DROP DATABASE 또는 TABLE IF EXISTS
 
 
 -- insert, select, update, delete
-INSTERT INTO 테이블명 (필드이름(칼럼명)1, 필드이름2,...) VALUES(데이터값1, 데이터값2....)
+INSERT INTO 테이블명 (필드이름(칼럼명)1, 필드이름2,...) VALUES(데이터값1, 데이터값2....)
 INSERT into author(id, name, email) VALUES(1, 'kim', 'abc@naver.com');
-select *from author
 
+--delete 칼럼하나 지우는거
 DELETE FROM author WHERE id = 4;
+delete from post where id = 7;
 
+--update 데이터 칼럼에 집어 넣는거
 update author set name = 'kim' where id=4;
 
-mariadb -u root -p
-use board
-
--- 다 조회
-select *from author;
-
--- 이름만 조회
-select name *from author;
-
---
+--select
 select *from author where id = 1
 
 select *from author where id >10 and name = 'abc'
@@ -96,5 +93,25 @@ where id !=1
 
 order by 필드이름 asc(오른차순, 디폴트)
 
-insert into author (id, name, adress) values(6,'hihi', 25)
+-- 양수음수 다 
+select CAST(’123’ as INT) 
 
+select CAST(’123’ as signed)
+
+--M(영어 달 나옴),m(숫자 달), D(th붙어서 나옴), H(24시로 표현) - 대문자 소문자 구분함
+SELECT BOOK_ID, DATE_FORMAT(PUBLISHED_DATE, '%Y-%m-%d') as PUBLISHED_DATE from BOOK where 
+CATEGORY = '인문' and DATE_FORMAT(	PUBLISHED_DATE, '%Y') = '2021' order by PUBLISHED_DATE
+
+==
+--M(영어 달 나옴),m(숫자 달), D(th붙어서 나옴)
+SELECT BOOK_ID, DATE_FORMAT(PUBLISHED_DATE, '%Y-%m-%d') as PUBLISHED_DATE from BOOK where 
+CATEGORY = '인문' PUBLISHED_DATE like '2021%' order by PUBLISHED_DATE
+
+== 
+SELECT BOOK_ID, DATE_FORMAT(PUBLISHED_DATE, '%Y-%m-%d') as PUBLISHED_DATE from BOOK where 
+CATEGORY = '인문' (PUBLISHED_DATE between '2021%-%01-01'and '2021%-%12-31') order by PUBLISHED_DATE
+
+-- 제약조건 제거되는
+ALTER table post drop unique 제약조건이름;
+
+alter table author
