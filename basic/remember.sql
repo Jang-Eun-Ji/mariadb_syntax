@@ -117,3 +117,17 @@ ALTER table post drop unique 제약조건이름;
 alter table author
 -- auto_increment
 ALTER TABLE post MODIFY COLUMN id INT AUTO_INCREMENT;
+
+-- 최소, 최대 등등, 평균, 합산
+select round(avg(price),2), min(price), max(price), sum(price) from post;
+
+--Group by 기본문
+select 컬럼명 from 테이블명 group by 컬럼명
+select author_id, count(*), sum(price), avg(price) from post group by author_id; --author_id 이름이랑 같이 다 나옴
+-- where -> group by -> order by
+select author_id, avg(price) from post where price >2000 group by author_id
+--haveing 
+select author_id, avg(price) as avg from post group by author_id having avg > 3000;
+
+--셀프 조인 왜그래
+select -> from -> join -> where -> group by -> having -> order by
