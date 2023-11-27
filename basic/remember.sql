@@ -15,6 +15,12 @@ SHOW INDEX FROM posts;
 select *from author
 -- 이름만 조회
 select name *from author;
+-- 프로시저 조회하는거
+show create procedure 프로시저명;
+--프로시저 쓰는거
+call 프로시저명(찾고싶어한는 변수?)
+call get_user(3);
+
 
 CREAT!!!
 -- PI테이블 생성법 , author테이블 신규 생성
@@ -129,5 +135,12 @@ select author_id, avg(price) from post where price >2000 group by author_id
 --haveing 
 select author_id, avg(price) as avg from post group by author_id having avg > 3000;
 
---셀프 조인 왜그래
+--셀프 조인 왜그래오
 select -> from -> join -> where -> group by -> having -> order by
+
+-- 
+mysqldump -u root -p --default-character-set=utf8mb4 board > dumpfile.sql
+
+mysql -u username -p -h 19.168.1 -P 3700 - 데이터베이스 컴말고 다른 컴으로 쓸때
+
+mysql -u root -p  → 데이터베이스 컴퓨터에서 쓸때

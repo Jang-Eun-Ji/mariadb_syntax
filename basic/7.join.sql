@@ -59,7 +59,7 @@ group by CAR_TYPE order by CAR_TYPE
 --재구매가 일어난 상품과 회원 리스트
 
 with recursive number_sequence(hour) as(
-    select 0 
+    select 0 --초기값
     union all
     select HOUR + 1 from number_sequence where hour <23
     )
